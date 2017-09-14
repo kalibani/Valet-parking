@@ -13,7 +13,6 @@ module.exports = function(sequelize, DataTypes) {
   });
   spot.associate = function (models) {
     spot.belongsTo(models.Parking_spot, {foreignKey: 'id_spot'})
-
   }
   return spot;
 };

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <%-include partials/head.ejs%>
+<%-include partials/head.ejs%>
+
   <body>
     <h1>Daftar Parkir</h1>
     <a href="/spots/add"><button>Add</button></a>
@@ -8,37 +9,64 @@
     <table border='2px'>
       <thead>
         <tr>
-          <th>Plat Nomor</th>
-          <th>Drivers</th>
-          <th>Lantai </th>
-          <th>Spot  </th>
-          <th>Status </th>
+          <th class="text-center">Plat Nomor</th>
+          <th class="text-center">Drivers</th>
+          <th class="text-center">Lantai</th>
+          <th class="text-center">Spot</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Action</th>
         </tr>
       </thead>
       <tbody>
         <TR>
-        <TD>
-          ISI DATANYA
-        </TD>
-        <TD>
-          ISI DATANYA
-        </TD>
-        <TD>
-          ISI DATANYA
-        </TD>
-        <TD>
-          ISI DATANYA
-        </TD>
-        <td>
-          <select>
+          <TD>
+            ISI DATANYA
+          </TD>
+          <td>
+            <select>
+            <<option value="">Hary</option>
+            <<option value="">Bani</option>
+          </select>
+          </td>
+          <td>
+            <select>
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Plat Nomor ..." title="Type in a name">
+
+<table id="myTable">
+  <tr class="header">
+    <th>Plat No</th>
+    <th>Drivers</th>
+    <th>SPOT</th>
+    <th>Jam Masuk</th>
+    <th>Jam Keluar</th>
+    <th>Durasi</th>
+    <th>Total</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+          </select>
+          </td>
+          <TD>
+            ISI DATANYA
+          </TD>
+          <TD>
+            ISI DATANYA
+          </TD>
+          <td>
+            <select>
             <option value="kosong"> Kosong </option>
             <option value="isi"> Isi </option>
           </select>
-        </td>
-      </tr>
+          </td>
+        </tr>
       </tbody>
     </table>
   </body>
 
   <%-include partials/footer.ejs%>
+
 </html>

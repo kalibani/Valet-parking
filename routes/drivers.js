@@ -4,10 +4,10 @@ const models = require('../models');
 
 router.get('/', (req, res) =>{
   models.Driver.findAll({
-    attributes: ['id','nama', 'telp','no_plat']
+    order : [['id','ASC']],
+    attributes: ['id','nama','telp']
   })
   .then(rows =>{
-    //res.send(rows)
     res.render('drivers', {data: rows})
   })
   .catch(err =>{
@@ -17,9 +17,11 @@ router.get('/', (req, res) =>{
 
 router.get('/add', (req, res) => {
   models.Driver.findAll()
-  .then(rows=>{
-    res.send(rows)
-    //res.render('add_drivers', {data: rows})
+  .then(data => {
+    res.render('add_drivers', {data : data})
+  })
+  .catch(err => {
+    res.send(err)
   })
 })
 
@@ -29,8 +31,7 @@ router.post('/add', (req, res) => {
       nama: req.body.nama,
       telp : req.body.telp,
       createdAt : new Date(),
-      updatedAt : new Date(),
-      id_car : req.body.id_car
+      updatedAt : new Date()
   })
   .save()
   .then(rows => {
@@ -42,8 +43,9 @@ router.post('/add', (req, res) => {
 })
 
 router.get('/delete/:id', (req,res) => {
+  console.log("=================");
   models.Driver.destroy({
-    where: {id:req.params.id}
+    where: { id: req.params.id}
   })
   .then(rows=> {
     res.redirect('/drivers')
@@ -56,11 +58,7 @@ router.get('/delete/:id', (req,res) => {
 router.get('/edit/:id', function(req,res) {
   models.Driver.findById(req.params.id)
   .then(rows => {
-    models.Car.findAll().then(rows2 => {
-      //res.send({rows, rows2})
-      console.log({rows, rows2});
-      // res.render('teacher_edit', {data: rows, data2: rows2})
-    })
+    res.render('edit_drivers', {data: rows})
   })
 })
 
@@ -69,7 +67,7 @@ router.post('/edit/:id', function(req,res) {
     {
       nama: req.body.nama,
       telp: req.body.telp,
-      id_car: req.body.id_car
+      no_plat: req.body.no_plat
     },
     {
       where: { id: req.params.id}

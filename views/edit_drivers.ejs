@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <h1>Halaman Edit Drivers</h1>
+  </td>
+  </tr>
+    </tbody>
+    </table>
+</body>
+<table border = '2px'>
+<form action="/drivers/edit/<%=data.id%>" method="POST">
+  <label>Nama Drivers : <input type="text" name="nama" placeholder="Nama Drivers" value = "<%= data.nama%>"></label>
+  <label>Telepon : <input type="text" name="telp" placeholder="No Telepon" value = "<%= data.telp%>"></label>
+   <input type="submit" value="SUBMIT">
+</form>
+</table>
+</html>
