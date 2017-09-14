@@ -14,15 +14,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-<<<<<<< HEAD
-  Transaksi.associate = function (models){
-    Transaksi.belongsTo(models.Driver, {foreignKey : id_driver})
-    Transaksi.belongsTo(models.Parking_spot, {foreignKey : id_spot})
-=======
   Transaksi.associate = function (models) {
     Transaksi.belongsTo(models.Driver, {foreignKey: 'id_driver'})
     Transaksi.belongsTo(models.Parking_spot, {foreignKey: 'id_spot'})
->>>>>>> backup
   }
   return Transaksi;
 };

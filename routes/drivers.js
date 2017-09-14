@@ -4,12 +4,11 @@ const models = require('../models');
 
 router.get('/', (req, res) =>{
   models.Driver.findAll({
-    attributes: ['nama', 'telp','id_car']
+    attributes: ['id','nama', 'telp','no_plat']
   })
   .then(rows =>{
-    res.send(rows)
-    
-    //res.render('drivers', {data: rows})
+    //res.send(rows)
+    res.render('drivers', {data: rows})
   })
   .catch(err =>{
     res.send(err)

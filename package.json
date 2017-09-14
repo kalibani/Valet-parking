@@ -4,22 +4,18 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-<<<<<<< HEAD
-    "dev": "nodemon ./bin/www"
-=======
+
     "start:dev": "nodemon ./bin/www"
->>>>>>> backup
+
   },
   "dependencies": {
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "ejs": "^2.5.7",
-<<<<<<< HEAD
-    "express": "^4.15.4",
-=======
+
     "express": "~4.15.2",
->>>>>>> backup
+
     "jade": "~1.11.0",
     "morgan": "~1.8.1",
     "pg": "^7.3.0",
