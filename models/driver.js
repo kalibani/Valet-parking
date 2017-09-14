@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var Driver = sequelize.define('Driver', {
     nama: DataTypes.STRING,
     telp: DataTypes.STRING,
-    id_car : DataTypes.INTEGER
+    no_plat : DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Driver.associate = function(models){
-    Driver.hasMany(models.Car)
+    Driver.belongsToMany(models.Parking_spot, {through:models.Transaksi})
+    Driver.hasMany(models.Transaksi)
   }
   return Driver;
 };
