@@ -30,6 +30,7 @@ router.post('/add', (req, res) => {
   models.Driver.build({
       nama: req.body.nama,
       telp : req.body.telp,
+      no_plat: req.body.no_plat,
       createdAt : new Date(),
       updatedAt : new Date()
   })
@@ -43,7 +44,6 @@ router.post('/add', (req, res) => {
 })
 
 router.get('/delete/:id', (req,res) => {
-  console.log("=================");
   models.Driver.destroy({
     where: { id: req.params.id}
   })

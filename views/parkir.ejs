@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html>
+<%-include partials/head.ejs%>
+
+  <body>
+    <h1>Daftar Parkir</h1>
+    <table border='2px'>
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Plat No</th>
+          <th class="text-center">Driver ID</th>
+          <th class="text-center">Spot</th>
+          <th class="text-center">Jam Masuk</th>
+          <th class="text-center">Jam Keluar</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%dataTransaksi.forEach( rows => { %>
+          <tr>
+            <td class="text-center">
+              <%=rows.id%>
+            </td>
+            <td class="text-center">
+              <%=rows.no_plat%>
+            </td>
+            <td class="text-center">
+              <%=rows.DriverId%>
+            </td>
+            <td class="text-center">
+              <%=rows.Parking_spot.spot_name%>
+            </td>
+            <td class="text-center">
+              <%=rows.jam_masuk%>
+            </td>
+            <td class="text-center">
+              <%=rows.jam_keluar%>
+            </td>
+            <td class="text-center">
+              <a href="/parkir/edit/<%=rows.DriverId%>"><button class="text-center">CEK</button></a>
+              <a href="/parkir/delete/<%=rows.id%>"><button class="text-center">Delete</button></a>
+            </td>
+          </tr>
+          <% })%>
+      </tbody>
+    </table>
+  </body>
+  <form action="/parkir" method="post"><h1>Form Input</h1>
+    <table>
+    Plat Nomor :
+    <input type="text" name="no_plat" value="" placeholder="Plat Nomor">
+    Drivers :
+    <select class="" name="DriverId">
+      <% dataDriver.forEach(obj=> { %>
+         <option value='<%=obj.id%>'><%= obj.nama%></option>
+      <%})%>
+    </select>
+    Spot :
+    <select class="" name="ParkingSpotId">
+      <% dataParkiran.forEach(obj2=> { %>
+         <option value='<%=obj2.id%>'><%= obj2.spot_name%></option>
+      <%})%>
+    </select>
+    <input type="submit" value="Submit">
+  </form>
+    </table>
+  <%-include partials/footer.ejs%>
+</html>
