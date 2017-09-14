@@ -9,7 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 // var car = require('./routes/car');
 var drivers = require('./routes/drivers');
-var spots = require('./routes/spot');
+var parkir = require('./routes/parkir');
 var transaksi = require('./routes/transaksi');
 
 var app = express();
@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 // app.use('/users', users);
 app.use('/drivers', drivers);
-app.use('/spots', spots);
+app.use('/parkir', parkir);
 app.use('/transaksi', transaksi);
 
 // catch 404 and forward to error handler
