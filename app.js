@@ -7,11 +7,15 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+<<<<<<< HEAD
 var car = require('./routes/car');
 var drivers = require('./routes/driver');
 var spots = require('./routes/spot');
 var transaksi = require('./routes/transaksi');
 
+=======
+var drivers = require('./routes/drivers');
+>>>>>>> backup
 var app = express();
 
 // view engine setup
@@ -27,12 +31,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+<<<<<<< HEAD
 // app.use('/users', users);
 app.use('/cars', car);
 app.use('/drivers', drivers);
 app.use('/spots', spots);
 app.use('/transaksi', transaksi);
 
+=======
+app.use('/users', users);
+app.use('/drivers', drivers)
+>>>>>>> backup
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

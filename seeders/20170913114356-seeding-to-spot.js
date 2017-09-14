@@ -23,6 +23,7 @@ module.exports = {
       status: 'KOSONG',
       createdAt: new Date(),
       updatedAt:  new Date()
+<<<<<<< HEAD
     },
     {
       nama_spot: 'C1',
@@ -31,6 +32,15 @@ module.exports = {
       updatedAt:  new Date()
     }
   ])
+=======
+    },{
+      nama_spot: 'B3',
+      status: 'ISI',
+      createdAt: new Date(),
+      updatedAt:  new Date()
+    }]
+  )
+>>>>>>> backup
   },
 
   down: function (queryInterface, Sequelize) {
