@@ -23,7 +23,7 @@
           let masuk= new Date(rows.jam_masuk)
           let keluar= new Date(rows.jam_keluar)
           let durasi;
-          if(rows.jam_keluar!== null){
+          if(rows.Parking_spot!== null){
             let hitung = Math.round((keluar - masuk)/1000/60)
             durasi = Math.ceil(hitung/60)
           }else{
@@ -50,7 +50,7 @@
               <%=rows.jam_keluar%>
             </td>
             <td class="text-center">
-              <a href="/parkir/edit/<%=rows.DriverId%>"><button class="text-center">CEK</button></a>
+              <a href="/parkir/edit/<%=rows.DriverId%>"><button class="text-center">Checkout</button></a>
               <a href="/parkir/delete/<%=rows.id%>"><button class="text-center">Delete</button></a>
             </td>
           </tr>

@@ -4,6 +4,7 @@ var models = require('../models')
 /* GET home page. */
 
 
+
 router.get('/', (req, res) =>{
   models.Transaksi.findAll({include: [{model: models.Driver, model: models.Parking_spot}],
     attributes: ['id','no_plat', 'DriverId','ParkingSpotId','jam_masuk','jam_keluar']
@@ -11,9 +12,9 @@ router.get('/', (req, res) =>{
   .then(transaksi =>{
     models.Driver.findAll({attributes: ['id','nama']})
     .then(drivers=>{
-      models.Parking_spot.findAll({attributes: ['id','spot_name', 'spot_status']})
+      models.Parking_spot.findAll({where: {spot_status:'kosong'}})
       .then(parkiran=>{
-        // res.send(transaksi);
+         //res.send(parkiran);
         // console.log('------', transaksi[1].Parking_spot.spot_name)
         res.render('parkir', {dataDriver: drivers, dataParkiran: parkiran, dataTransaksi: transaksi})
       })
