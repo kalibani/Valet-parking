@@ -21,3 +21,12 @@ li a {
 li a:hover {
     background-color: #111;
 }
+
+table {
+  width: 50%;
+  text-align: left;
+}
+
+thead, tr, th{
+  color: black;
+}

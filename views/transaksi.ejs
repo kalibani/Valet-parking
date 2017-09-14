@@ -1,93 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
   <%-include partials/head.ejs%>
-</head>
-<body>
-
-<h2>Transaksi</h2>
-
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-
-<table id="myTable">
-  <tr class="header">
-    <th>Plat No</th>
-    <th>Drivers</th>
-    <th>SPOT</th>
-    <th>Jam Masuk</th>
-    <th>Jam Keluar</th>
-    <th>Durasi</th>
-    <th>Total</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Koniglich Essen</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Italy</td>
-  </tr>
-  <tr>
-    <td>North/South</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Paris specialites</td>
-    <td>France</td>
-  </tr>
-</table>
-
-<script>
-function myFunction() {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-</script>
-
-</body>
+  <body>
+    <h1>Transaksi Valet</h1>
+    <table border='2px'>
+      <thead>
+        <tr>
+          <th>Plat Nomor</th>
+          <th>Jam Masuk</th>
+          <th>Jam Keluar </th>
+          <th>Durasi  </th>
+          <th>Harga </th>
+        </tr>
+      </thead>
+      <tbody>
+        <%dataTransaksi.forEach( rows => {
+          let masuk= new Date(rows.jam_masuk)
+          let keluar= new Date(rows.jam_keluar)
+          let durasi;
+          if(rows.jam_keluar!== null){
+            let hitung = Math.round((keluar - masuk)/1000/60)
+            durasi = Math.ceil(hitung/60)
+          }else{
+            durasi=0
+          }
+          let harga= durasi*5000
+          %>
+          <tr>
+            <td class="text-center">
+              <%=rows.no_plat%>
+            </td>
+            <td class="text-center">
+              <%=rows.jam_masuk%>
+            </td>
+            <td class="text-center">
+              <%=rows.jam_keluar%>
+            </td>
+            <td class="text-center">
+              <%-durasi%> jam
+            </td>
+            <td class="text-center">
+              <%-harga%>
+            </td>
+            <td> </td>
+          </tr>
+            <% })%>
+      </tbody>
+    </table>
+  </body>
   <%-include partials/footer.ejs%>
 </html>

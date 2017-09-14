@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<%-include partials/head.ejs%>
+<body>
+  <h1>Halaman Edit Parkir</h1>
+  </td>
+  </tr>
+    </tbody>
+    </table>
+</body>
+<table border = '2px'>
+  <form action="/parkir/edit/<%=data.DriverId%>" method="post">
+    Plat No : <input type="text" name="no_plat" placeholder="Plat No" value = "<%= data.no_plat%>"> <br>
+    ID Driver : <input type="text" name="DriverId" placeholder="Driver ID" value = "<%= data.DriverId%>"> <br>
+    Spot : <input type="text" name="spot_name" placeholder="Spot" value = "<%= data.Parking_spot.spot_name%>"> <br>
+     <input type="submit" value="SELESAI">
+  </form>
+</table>
+<%-include partials/footer.ejs%>
+</html>

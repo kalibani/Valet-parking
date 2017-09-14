@@ -6,79 +6,89 @@ var models = require('../models')
 
 router.get('/', (req, res) =>{
   models.Transaksi.findAll({include: [{model: models.Driver, model: models.Parking_spot}],
-    attributes: ['id','no_plat', 'DriverId','ParkingSpotId','jam_masuk']
+    attributes: ['id','no_plat', 'DriverId','ParkingSpotId','jam_masuk','jam_keluar']
   })
-  .then(rows =>{
-    res.send(rows)
-    //res.render('drivers', {data: rows})
+  .then(transaksi =>{
+    models.Driver.findAll({attributes: ['id','nama']})
+    .then(drivers=>{
+      models.Parking_spot.findAll({attributes: ['id','spot_name', 'spot_status']})
+      .then(parkiran=>{
+        // res.send(transaksi);
+        // console.log('------', transaksi[1].Parking_spot.spot_name)
+        res.render('parkir', {dataDriver: drivers, dataParkiran: parkiran, dataTransaksi: transaksi})
+      })
+    })
   })
   .catch(err =>{
-    //res.send(err)
     console.log(err);
   })
 })
 
 
-router.get('/add', (req, res) => {
-  models.Driver.findAll({attributes: ['id','nama']})
-  .then(rows=>{
-    models.Parking_spot.findAll({
-      attributes: ['id','spot_name', 'spot_status']
-    })
-    .then(rows2=>{
-      res.send({data: rows, data2: rows2})
-    })
-  })
-})
-
-router.post('/add', (req, res) => {
+router.post('/', (req, res) => {
   models.Transaksi.build({
       no_plat: req.body.no_plat,
       DriverId: req.body.DriverId,
       ParkingSpotId: req.body.ParkingSpotId,
       jam_masuk: new Date(),
-      createdAt : new Date(),
-      updatedAt : new Date()
+      createdAt : new Date()
+      // updatedAt : new Date()
   })
   .save()
   .then(rows => {
-    res.redirect('/parkir')
+    // res.send(rows)
+    res.redirect('parkir')
   })
   .catch(err =>{
     res.send(err)
   })
 })
 
-router.get('/edit/:id', function(req,res) {
-  models.Transaksi.findAll({
-    where: { id: req.params.id}
+
+router.get('/delete/:id', (req,res) => {
+  models.Transaksi.destroy({
+    where: {id:req.params.id}
   })
-  .then(rows => {
-    models.Driver.findAll()
-    .then(rows2 => {
-      models.Parking_spot.findAll()
-      .then(rows3 =>{
-        res.send({data: rows, data2: rows2, data3: rows3})
-      })
-    })
+  .then(rows=> {
+    res.redirect('/parkir')
+  })
+  .catch(err => {
+    res.send(err)
   })
 })
 
+router.get('/edit/:id', function(req, res) {
+  models.Transaksi.findById(req.params.id, {
+    include: ['Driver', 'Parking_spot'],
+  })
+  .then(rows=> {
+    res.render('edit_parkir', {data: rows})
+  })
+  .catch(err => {
+    res.send(err)
+  })
+});
+
 router.post('/edit/:id', function(req,res) {
-  models.Teacher.update(
+  // res.send(req.body.spot_name)
+  models.Transaksi.update(
     {
       no_plat: req.body.no_plat,
       DriverId: req.body.DriverId,
-      ParkingSpotId: req.body.ParkingSpotId,
+      spot_name: req.body.spot_name,
+      jam_keluar: new Date()
     },
     {
-      where: { id: req.params.id}
+      where: { DriverId: req.params.id}
     }
   )
-  .then(rows =>
+  .then(rows => {
+    console.log(rows);
     res.redirect('/parkir')
-  )
+  })
+  .catch(err => {
+    res.send(err)
+  })
 })
-
 
 module.exports = router;
