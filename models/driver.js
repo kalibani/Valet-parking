@@ -13,7 +13,9 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Driver.associate = function(models){
-    Driver.hasMany(models.Car)
+    // Driver.belongsTo(models.Car)
+    Driver.belongsToMany(models.Parking_spot, { through: Transaksi });
+    Driver.hasMany(models.Transaksi);
   }
   return Driver;
 };

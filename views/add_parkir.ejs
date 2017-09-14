@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <%-include partials/head.ejs%>
+<body>
+  <form action="/spots/add" method="POST">
+   <tr>
+    <th colspan="2"><h1>Tambah Daftar Parkir</h1></th>
+  </tr>
+   <tr>
+    <td>Plat Nomor</td>
+    <td>:<input type="text" name="nama"></td>
+   </tr>
+   <tr>
+    <td>ID Drivers</td>
+    <td>:<input type="text" name="id_driver"></td>
+   </tr>
+   <tr>
+    <td>Lantai</td>
+    <td>:<input type="password" name="pwd"></td>
+   </tr>
+   <tr>
+    <td>Spot</td>
+    <td>:<input type="password" name="pwd"></td>
+   </tr>
+   <tr>
+    <input type="submit" value="SUBMIT">
+   </tr>
+  </table>
+  </form>
+
+</body>
+<%-include partials/footer.ejs%>
+</html>

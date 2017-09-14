@@ -12,6 +12,25 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
+    return queryInterface.bulkInsert('spots', [{
+      nama_spot: 'A1',
+      status: 'ISI',
+      createdAt: new Date(),
+      updatedAt:  new Date()
+    },
+    {
+      nama_spot: 'B1',
+      status: 'KOSONG',
+      createdAt: new Date(),
+      updatedAt:  new Date()
+    },
+    {
+      nama_spot: 'C1',
+      status: 'ISI',
+      createdAt: new Date(),
+      updatedAt:  new Date()
+    }
+  ])
   },
 
   down: function (queryInterface, Sequelize) {

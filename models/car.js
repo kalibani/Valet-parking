@@ -11,5 +11,8 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+  Car.associate = function(models){
+    Car.hasMany(models.Drivers)
+  }
   return Car;
 };

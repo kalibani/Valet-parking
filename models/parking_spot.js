@@ -12,9 +12,9 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Parking_spot.associate= function (models) {
-    Parking_spot.belongsToMany(models.Driver)
+    Parking_spot.belongsToMany(models.Driver, { through: Transaksi })
     Parking_spot.hasMany(models.Transaksi)
-    Parking_spot.hasMany(models.Spot)
+    // Parking_spot.hasMany(models.Spot)
   }
   return Parking_spot;
 };

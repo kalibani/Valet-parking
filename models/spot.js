@@ -10,5 +10,8 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+  spot.associate = function(models){
+    spot.hasMany(models.Parking_spot)
+  }
   return spot;
 };
